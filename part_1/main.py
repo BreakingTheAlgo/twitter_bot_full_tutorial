@@ -6,6 +6,7 @@ import time
 def start():
 
     webdriver = initialize_webdriver()
+    # Keeps the webdriver open for 10 seconds
     time.sleep(10)
     
     if webdriver == None:
@@ -23,14 +24,13 @@ def initialize_webdriver():
 
         options.add_argument("start-maximized")
         options.add_argument("--disable-blink-features=AutomationControlled")
-
+        
+        # specify where your chrome driver is downloaded
         service = Service("/Users/breakthealgo/Downloads/chromedriver")
 
         driver = webdriver.Chrome(service=service, options=options)
-
-        driver.execute_cdp_cmd('Network.setUserAgentOverride', {
-            "userAgent": 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:77.0) Gecko/20190101 Firefox/77.0'})
-
+        
+        # This line is duplicated in the video
         driver.execute_cdp_cmd('Network.setUserAgentOverride', {
             "userAgent": 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:77.0) Gecko/20190101 Firefox/77.0'})
 
